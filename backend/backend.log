@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/app/backend/main.py", line 23, in <module>
+    validation_service = ValidationService()
+                         ^^^^^^^^^^^^^^^^^^^
+  File "/app/backend/app/services.py", line 9, in __init__
+    self.llm = ChatGoogleGenerativeAI(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/site-packages/langchain_google_genai/chat_models.py", line 2293, in __init__
+    super().__init__(**kwargs)
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/site-packages/langchain_core/load/serializable.py", line 118, in __init__
+    super().__init__(*args, **kwargs)
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/site-packages/pydantic/main.py", line 263, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for ChatGoogleGenerativeAI
+  Value error, API key required for Gemini Developer API. Provide api_key parameter or set GOOGLE_API_KEY/GEMINI_API_KEY environment variable. [type=value_error, input_value={'model': 'gemini-2.0-fla... '', 'model_kwargs': {}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error
