@@ -51,4 +51,4 @@ async def stream_debate(idea: str):
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("index:app", host="0.0.0.0", port=8000, reload=True)
