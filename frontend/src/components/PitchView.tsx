@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import API_BASE_URL from '@/lib/api-config';
 
 interface PitchData {
   slides: { title: string; content: string }[];
@@ -17,7 +18,7 @@ export const PitchView: React.FC<{ idea: string }> = ({ idea }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/pitch/generate?idea=${encodeURIComponent(idea)}`)
+    fetch(`${API_BASE_URL}/api/pitch/generate?idea=${encodeURIComponent(idea)}`)
       .then(res => res.json())
       .then(setData)
       .finally(() => setLoading(false));

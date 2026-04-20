@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import API_BASE_URL from '@/lib/api-config';
 
 interface ArchitectureData {
   stack: {
@@ -19,7 +20,7 @@ export const ArchitectView: React.FC<{ idea: string; onComplete: () => void }> =
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/architect/generate?idea=${encodeURIComponent(idea)}`)
+    fetch(`${API_BASE_URL}/api/architect/generate?idea=${encodeURIComponent(idea)}`)
       .then(res => res.json())
       .then(setData)
       .finally(() => setLoading(false));

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AgentAvatar } from './AgentAvatar';
+import API_BASE_URL from '@/lib/api-config';
 
 interface Message {
   agent: 'tech' | 'marketing';
@@ -20,7 +21,7 @@ export const DebateRoom: React.FC<DebateRoomProps> = ({ idea, onComplete }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const eventSource = new EventSource(`http://localhost:8000/api/debate/stream?idea=${encodeURIComponent(idea)}`);
+    const eventSource = new EventSource(`${API_BASE_URL}/api/debate/stream?idea=${encodeURIComponent(idea)}`);
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);

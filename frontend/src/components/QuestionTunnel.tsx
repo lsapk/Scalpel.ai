@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AgentAvatar } from './AgentAvatar';
+import API_BASE_URL from '@/lib/api-config';
 
 interface Question {
   id: string;
@@ -25,7 +26,7 @@ export const QuestionTunnel: React.FC<QuestionTunnelProps> = ({ idea, onComplete
   const fetchQuestions = async (prevAnswers: any[] = []) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/validate/questions', {
+      const response = await fetch(`${API_BASE_URL}/api/validate/questions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idea, previous_answers: prevAnswers }),
