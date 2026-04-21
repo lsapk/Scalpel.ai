@@ -1,6 +1,7 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from app.config import settings
+from app.utils import extract_json
 import json
 
 class ArchitectService:
@@ -31,8 +32,7 @@ class ArchitectService:
         """
 
         response = await self.llm.ainvoke([SystemMessage(content=prompt)])
-        content = response.content.replace("```json", "").replace("```", "").strip()
-        return json.loads(content)
+        return extract_json(response.content)
 
 class PitchService:
     def __init__(self):
@@ -61,5 +61,4 @@ class PitchService:
         """
 
         response = await self.llm.ainvoke([SystemMessage(content=prompt)])
-        content = response.content.replace("```json", "").replace("```", "").strip()
-        return json.loads(content)
+        return extract_json(response.content)

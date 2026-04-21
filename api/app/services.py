@@ -2,6 +2,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from app.config import settings
 from app.models import Question, ValidationResponse
+from app.utils import extract_json
 import json
 
 class ValidationService:
@@ -42,12 +43,14 @@ class ValidationService:
             HumanMessage(content=user_msg)
         ])
 
-        try:
-            # Nettoyage simple si Gemini ajoute des balises ```json
-            content = response.content.replace("```json", "").replace("```", "").strip()
-            data = json.loads(content)
-            return ValidationResponse(**data)
-        except Exception as e:
+        data = extract_json(response.content)
+        if data:
+            try:
+                return ValidationResponse(**data)
+            except:
+                pass
+
+        # Fallback
             # Fallback simple en cas d'erreur de parsing
             return ValidationResponse(
                 questions=[Question(id="q_error", text="Pouvez-vous préciser davantage votre projet ?", type="text")],

@@ -66,11 +66,14 @@ class DebateOrchestrator:
             "current_count": 0
         }
 
-        async for output in self.graph.astream(initial_state):
+        async for output in self.graph.astream(initial_state, stream_mode="updates"):
             # Formater pour le frontend (SSE)
+            if not output:
+                continue
             node_name = list(output.keys())[0]
-            message = output[node_name]["messages"][-1]
-            yield {
-                "agent": "marketing" if node_name == "marketing_agent" else "tech",
-                "content": message.content
-            }
+            if "messages" in output[node_name]:
+                message = output[node_name]["messages"][-1]
+                yield {
+                    "agent": "marketing" if node_name == "marketing_agent" else "tech",
+                    "content": message.content
+                }
