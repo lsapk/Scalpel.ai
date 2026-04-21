@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from './ThemeToggle';
 
 interface Step {
   id: number;
@@ -60,6 +61,7 @@ export default function WarRoomLayout({ children, steps, currentStep }: WarRoomL
           </nav>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <button className="text-sm font-medium px-4 py-2 rounded-full hover:bg-secondary transition-colors">
               Projets
             </button>
