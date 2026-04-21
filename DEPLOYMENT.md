@@ -11,6 +11,13 @@ L'architecture a été simplifiée pour que Vercel puisse tout gérer automatiqu
    - `SUPABASE_URL` : L'URL de votre projet [Supabase](https://supabase.com/).
    - `SUPABASE_KEY` : La clé "anon" ou "service_role" de Supabase pour sauvegarder les données.
 
+## Configuration de la Base de Données
+Pour que l'application puisse sauvegarder vos projets, vous devez exécuter le script SQL fourni dans le fichier `SCHEMA.sql` de ce dépôt :
+1. Allez dans votre dashboard Supabase.
+2. Cliquez sur **"SQL Editor"** dans la barre latérale.
+3. Copiez-collez le contenu de `SCHEMA.sql`.
+4. Cliquez sur **"Run"**.
+
 ### Liste des APIs nécessaires (Où les trouver) :
 1. **Google Gemini (Obligatoire)** :
    - Allez sur [Google AI Studio](https://aistudio.google.com/).
