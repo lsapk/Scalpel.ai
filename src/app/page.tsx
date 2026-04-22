@@ -51,6 +51,19 @@ export default function Home() {
     }));
   };
 
+  const handleRestart = () => {
+    setIsStarted(false);
+    setShowDebate(false);
+    setCurrentStep(1);
+    setIdea("");
+    setSteps([
+      { id: 1, title: 'Validation', status: 'current' },
+      { id: 2, title: 'Technique', status: 'locked' },
+      { id: 3, title: 'Marché', status: 'locked' },
+      { id: 4, title: 'Pitch', status: 'locked' },
+    ]);
+  };
+
   return (
     <WarRoomLayout steps={steps} currentStep={currentStep}>
       <div className="space-y-12">
@@ -108,7 +121,7 @@ export default function Home() {
         ) : currentStep === 2 ? (
           <ArchitectView idea={idea} onComplete={handleArchitectComplete} />
         ) : (
-          <PitchView idea={idea} />
+          <PitchView idea={idea} onRestart={handleRestart} />
         )}
 
         <section className="grid md:grid-cols-3 gap-6">

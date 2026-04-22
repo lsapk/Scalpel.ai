@@ -38,7 +38,7 @@ class ValidationService:
 
         user_msg = f"Idée : {idea}\n\nRéponses précédentes : {json.dumps(previous_answers)}"
 
-        response = self.llm.invoke([
+        response = await self.llm.ainvoke([
             SystemMessage(content=system_prompt),
             HumanMessage(content=user_msg)
         ])

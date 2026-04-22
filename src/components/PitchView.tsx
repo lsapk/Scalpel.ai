@@ -13,7 +13,7 @@ interface PitchData {
   };
 }
 
-export const PitchView: React.FC<{ idea: string }> = ({ idea }) => {
+export const PitchView: React.FC<{ idea: string; onRestart: () => void }> = ({ idea, onRestart }) => {
   const [data, setData] = useState<PitchData | null>(null);
   const [loading, setLoading] = useState(true);
 
